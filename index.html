@@ -11,7 +11,7 @@
   <title>Bootstrap Theme</title>
 </head>
 
-<body>
+<body data-spy="scroll" data-target="#main-nav" id="home">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="main-nav">
     <div class="container">
       <a href="index.html" class="navbar-brand">LoopLAB</a>
@@ -303,6 +303,30 @@
   <script>
     // Get the current year
     $('#year').text(new Date().getFullYear());
+
+    // Init Scrollspy
+    $('body').scrollspy({ target: '#main-nav' });
+
+    // Add smooth scrolling
+    $('#main-nav a').on('click', function (e) {
+      // Check for a hash value
+      if (this.hash !== '') {
+        // Prevent default behavior
+        e.preventDefault();
+
+        // Store hash
+        const hash = this.hash;
+
+        // Animate smooth scroll
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 900, function () {
+          // Add hash to URL after scroll
+          window.location.hash = hash;
+        });
+      }
+    });
+
   </script>
 </body>
 
